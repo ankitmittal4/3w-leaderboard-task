@@ -3,6 +3,7 @@ const cors = require('cors');
 const connectDB = require('./src/config/db');
 const userRoutes = require('./src/routes/user.route');
 
+const allowedOrigins = process.env.CORS_ORIGIN;
 require('dotenv').config();
 const app = express();
 
@@ -10,7 +11,7 @@ connectDB();
 // app.use(cors());
 app.use(
     cors({
-        origin: '*'
+        origin: allowedOrigins
     })
 );
 
