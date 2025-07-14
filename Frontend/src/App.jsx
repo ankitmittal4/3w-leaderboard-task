@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TopThree from './TopThree';
 import axios from "axios";
 
 const API = "http://localhost:3021/api";
@@ -40,6 +41,14 @@ function App() {
   const paginatedUsers = users.slice(indexOfFirstUser, indexOfLastUser);
   const totalPages = Math.ceil(users.length / usersPerPage);
 
+  const topThree = [...users]
+    .sort((a, b) => b.points - a.points)
+    .slice(0, 3);
+
+  // Ensure correct visual order: 2nd, 1st, 3rd
+  const visualOrder = [topThree[1], topThree[0], topThree[2]];
+
+
   return (
     <>
       <button
@@ -50,7 +59,7 @@ function App() {
       </button>
       <div className="p-6 max-w-3xl mx-auto relative">
 
-        <h1 className="text-2xl font-bold text-center mb-6">🔥 Claim Points System</h1>
+        <h1 className="text-2xl font-bold text-center mb-6 text-gray-600">Claim Points System</h1>
 
         {/* Add User */}
         <div className="mb-6 flex gap-4 items-center">
@@ -68,6 +77,9 @@ function App() {
             Add user
           </button>
         </div>
+        {topThree.length === 3 && <TopThree topThreeUsers={visualOrder} />}
+
+
 
         {/* Leaderboard */}
         <h2 className="text-xl font-semibold mb-2">🏆 Leaderboard</h2>
