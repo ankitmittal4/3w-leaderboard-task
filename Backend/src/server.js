@@ -9,12 +9,12 @@ const allowedOrigins = process.env.CORS_ORIGIN;
 const app = express();
 
 connectDB();
-// app.use(cors());
-app.use(
-    cors({
-        origin: allowedOrigins
-    })
-);
+app.use(cors());
+// app.use(
+//     cors({
+//         origin: allowedOrigins
+//     })
+// );
 
 app.use(express.json());
 app.use('/api', userRoutes);
