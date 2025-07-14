@@ -39,7 +39,7 @@ function History() {
                 <p>No history yet.</p>
             ) : (
                 <>
-                    <table className="w-full text-left border shadow bg-white rounded">
+                    <table className="w-full text-center border shadow bg-white rounded">
                         <thead className="bg-gray-100">
                             <tr>
                                 <th className="p-2">Sr.No.</th>
@@ -54,7 +54,19 @@ function History() {
                                     <td className="p-2">{indexOfFirstHistory + index + 1}</td>
                                     <td className="p-2">{h.userId?.name || "Unknown"}</td>
                                     <td className="p-2">{h.points}</td>
-                                    <td className="p-2">{new Date(h.createdAt).toLocaleString()}</td>
+                                    <td className="p-2">
+                                        {new Date(h.createdAt)
+                                            .toLocaleString('en-IN', {
+                                                timeZone: 'Asia/Kolkata',
+                                                hour: 'numeric',
+                                                minute: '2-digit',
+                                                hour12: true,
+                                                day: '2-digit',
+                                                month: 'short',
+                                                year: 'numeric',
+                                            })
+                                            .toUpperCase()}
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
