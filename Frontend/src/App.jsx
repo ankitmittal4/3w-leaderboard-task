@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TopThree from './TopThree';
 import axios from "axios";
 
-const API = "http://localhost:3021/api";
+const API = import.meta.env.VITE_API_URL
 
 function App() {
   const [users, setUsers] = useState([]);
