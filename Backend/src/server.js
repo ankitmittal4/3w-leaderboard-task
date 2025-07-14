@@ -1,10 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./src/config/db');
-const userRoutes = require('./src/routes/user.route');
+const connectDB = require('./config/db');
+const userRoutes = require('./routes/user.route');
 
 const allowedOrigins = process.env.CORS_ORIGIN;
-require('dotenv').config();
+// console.log(allowedOrigins);
 const app = express();
 
 connectDB();
